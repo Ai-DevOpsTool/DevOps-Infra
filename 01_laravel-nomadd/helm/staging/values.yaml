@@ -1,0 +1,62 @@
+namespace: nomadd-stg
+
+configMap:
+  appConfig:
+    APP_NAME: "Laravel"
+    APP_ENV: "local"
+    APP_DEBUG: "true"
+    APP_URL: "http://localhost"
+    LOG_CHANNEL: "stack"
+    LOG_LEVEL: "debug"
+    AWS_DEFAULT_REGION: "us-east-1"
+    AWS_BUCKET: ""
+    AWS_USE_PATH_STYLE_ENDPOINT: "false"
+    PUSHER_APP_ID: ""
+    PUSHER_APP_CLUSTER: "mt1"
+    GOOGLE_CLIENT_ID: "117658071339-ek1t6mmdb61m9j31r1701d9tn18d6mdv.apps.googleusercontent.com"
+    GOOGLE_CLIENT_SECRET: "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"
+    GOOGLE_CLIENT_REDIRECT: "http://localhost:8000/auth/google/callback"
+    MIDTRANS_SERVERKEY: "SB-Mid-server-M5rMFkz8AwXEzUDGeAU8uoi0"
+    MIDTRANS_CLIENTKEY: "SB-Mid-client-3Fj1-Dfeiz5GSIwd"
+    MIDTRANS_IS_PRODUCTION: "false"
+    MIDTRANS_IS_SANITIZED: "false"
+    MIDTRANS_IS_3DS: "false"
+
+  mysqlConfig:
+    MYSQL_DATABASE: "nomadd_db"
+
+secret:
+  mysql:
+    MYSQL_ROOT_PASSWORD: "password"
+    MYSQL_USER: "nomadd_user"
+    MYSQL_PASSWORD: "nomadd_pw"
+
+  nomadd:
+    APP_KEY: "base64:IrQ2ADo17OkkaOwsSPxrBoVKoH8mfrpIbex8ctPfGR4="
+    REDIS_PASSWORD: "null"
+    MAIL_USERNAME: "null"
+    MAIL_PASSWORD: "null"
+    AWS_ACCESS_KEY_ID: ""
+    AWS_SECRET_ACCESS_KEY: ""
+    PUSHER_APP_KEY: ""
+    PUSHER_APP_SECRET: ""
+
+services:
+  mysql:
+    name: mysql-db
+    port: 3306
+
+  nomadd:
+    name: nomadd
+    port: 8000
+    targetPort: 80
+
+pods:
+  mysql:
+    name: mysql-db
+    image: mysql:8.0
+
+  nomadd:
+    name: nomadd
+    image: airist/nomadd:v1.0.1-rc
+    initContainerCommand: [".docker/php-artisan-migrate"]

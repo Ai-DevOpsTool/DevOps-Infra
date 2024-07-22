@@ -1,0 +1,8 @@
+## Deployment
+
+```
+helm package staging # nama folder
+helm install nomadd-stg nomadd-stg-0.1.0.tgz --namespace nomadd-stg
+kubectl get all -n nomadd-stg
+
+```

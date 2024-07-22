@@ -1,0 +1,4 @@
+apiVersion: v2
+name: nomadd-stg
+description: A Helm chart for Nomadd application
+version: 0.1.0
