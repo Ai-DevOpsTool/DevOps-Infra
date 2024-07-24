@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nomadd
-  namespace: nomadd-stg
+  namespace: nomadd-prod
 spec:
   selector:
-    app: nomadd-stg
+    app: nomadd-prod
   ports:
     - port: 8000
       name: http
       protocol: TCP
       targetPort: 80
-      nodePort: 30220
+      nodePort: 30230
   type: NodePort
