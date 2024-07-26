@@ -8,7 +8,7 @@ metadata:
 spec:
   initContainers:
     - name: artisan-migrate
-      image: airist/nomadd:release-v1.0.10
+      image: airist/nomadd:production-release-v1.0.10
       command: [".docker/php-artisan-migrate"]
       env:
         - name: DB_HOST
@@ -32,7 +32,7 @@ spec:
               name: mysql-secret
   containers:
     - name: nomadd
-      image: airist/nomadd:release-v1.0.10
+      image: airist/nomadd:production-release-v1.0.10
       imagePullPolicy: IfNotPresent
       resources:
         requests:
